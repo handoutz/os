@@ -1,7 +1,11 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
+
 #include <macro.h>
 #include <tables.h>
+#include <timer.h>
+#include <types.h>
+
 
 extern unsigned char *memcpy(unsigned char *dest, const unsigned char *src, int count);
 extern unsigned short *memcpyw(unsigned short *dest, const unsigned short *src, int count);

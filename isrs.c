@@ -65,9 +65,45 @@ idt_set_gate(29, (unsigned)isr29, 0x08, 0x8E);
 idt_set_gate(30, (unsigned)isr30, 0x08, 0x8E);
 idt_set_gate(31, (unsigned)isr31, 0x08, 0x8E);
 }
-unsigned char *exceptions[] = {
-	"Division By Zero"
+char *exceptions[] = {
+	"Division By Zero Exception",
+	"Debug Exception",
+	"Non Maskable Interrupt Exception",
+	"Breakpoint Exception",
+	"Into Detected Overflow Exception",
+	"Out of Bounds Exception",
+	"Invalid Opcode Exception",
+	"No Coprocessor Exception",
+	"Double Fault Exception	Yes",
+	"Coprocessor Segment Overrun Exception",
+	"Bad TSS Exception	Yes",
+	"Segment Not Present Exception	Yes",
+	"Stack Fault Exception	Yes",
+	"General Protection Fault Exception	Yes",
+	"Page Fault Exception	Yes",
+	"Unknown Interrupt Exception",
+	"Coprocessor Fault Exception",
+	"Alignment Check Exception (486+)",
+	"Machine Check Exception (Pentium/586+)",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception",
+	"Reserved Exception"
 };
 void fault_handler(struct regs *r) {
-
+	if(r->int_no < 32) {
+		puts(exceptions[r->int_no]);
+		puts("\r\nSystem halt.\r\n");
+		for(;;);
+	}
 }
