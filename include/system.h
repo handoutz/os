@@ -1,6 +1,7 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 #include <macro.h>
+#include <tables.h>
 
 extern unsigned char *memcpy(unsigned char *dest, const unsigned char *src, int count);
 extern unsigned short *memcpyw(unsigned short *dest, const unsigned short *src, int count);
@@ -21,6 +22,5 @@ extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
 extern void init_video();
 
 //gdt
-extern void gdt_flush();
 
 #endif

@@ -3,6 +3,7 @@
 void kmain(void)
 {
 	gdt_install();
+	idt_install();
 	/*
 	char *str = "my first kernel";
 	char *vidptr = (char*)0xb8000; 	//video mem begins here.
