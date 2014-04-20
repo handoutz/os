@@ -7,12 +7,16 @@
 
 #define NODE_DIRECTORY 0;
 #define NODE_FILE 1;
+#define NODE_SIZE 8192;
 
 typedef unsigned short node_type;
 
 typedef struct vfs_node {
 	node_type type;
 	void* location;
+	
+	struct vfs_node* next;
+
 	struct vfs_node* parent;
 } vfs_node;
 extern void initvfs();
