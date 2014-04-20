@@ -15,6 +15,8 @@ typedef struct vfs_node {
 	node_type type;
 	char* name;
 	void* location;
+
+	struct vfs_node* first_child;
 	
 	struct vfs_node* next;
 

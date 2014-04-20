@@ -24,5 +24,5 @@ void init_tests() {
 //	putch(i2s(strcmp("a","a"))[0]);
 }
 void test_kp() {
-	hook_keyboard(&kp_test);
+	//hook_keyboard(&kp_test);
 }
