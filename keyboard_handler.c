@@ -1,12 +1,13 @@
 #include <system.h>
 #include <keyboard.h>
+
 void key_press(char c) {
 	unsigned char scan;
 	scan = c;
 	if(scan > 0x80) {
 		//released shift/whatever
 	} else {
-		putch(kbdus[scan]);
+		//putch(kbdus[scan]);
 	}
 }
 void keyboard_handler(struct regs *r){

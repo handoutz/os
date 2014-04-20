@@ -31,4 +31,6 @@ extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
 extern void init_video();
 
 extern void key_down(char k);
+//void (*handler)(struct regs *rr);
+extern void hook_keyboard(void (*handler)(char c));
 #endif

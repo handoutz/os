@@ -5,14 +5,15 @@
 #include <types.h>
 #include <memory.h>
 
-#define NODE_DIRECTORY 0;
-#define NODE_FILE 1;
-#define NODE_SIZE 8192;
+#define NODE_DIRECTORY 0
+#define NODE_FILE 1
+#define NODE_SIZE 8192
 
 typedef unsigned short node_type;
 
 typedef struct vfs_node {
 	node_type type;
+	char* name;
 	void* location;
 	
 	struct vfs_node* next;

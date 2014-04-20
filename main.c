@@ -1,5 +1,7 @@
 #include <system.h>
 #include <test.h>
+#include <fs/vfs.h>
+
 void irq_keyboard(struct regs *r){
 	puts("keyboard interrupted");
 }
@@ -27,6 +29,7 @@ void kmain(void)
 }
 void protected_aftersetup() {
 	init_video();
+	initvfs();
 	init_tests();
 	keyboard_install();
 	printf("holy shit!!!");
