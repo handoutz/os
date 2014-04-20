@@ -5,7 +5,9 @@
 #include <tables.h>
 #include <timer.h>
 #include <types.h>
+#include <memory.h>
 
+extern void keyboard_install();
 
 extern unsigned char *memcpy(unsigned char *dest, const unsigned char *src, int count);
 extern unsigned short *memcpyw(unsigned short *dest, const unsigned short *src, int count);
@@ -22,6 +24,7 @@ extern void cls();
 extern void putch(unsigned char c);
 extern void putus(unsigned char *str);
 extern void puts(char* str);
+extern void printl(char* str);
 extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
 extern void init_video();
 

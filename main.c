@@ -1,4 +1,5 @@
 #include <system.h>
+#include <test.h>
 void irq_keyboard(struct regs *r){
 	puts("keyboard interrupted");
 }
@@ -13,10 +14,10 @@ void kmain(void)
 	//irq_install_handler(1, &irq_keyboard);
 	timer_install();
 	keyboard_install();
-	
 
 	init_video();
-	puts("Hello, World!");
+	memory_init();
+	init_tests();
 
 	for(;;);
 }

@@ -1,6 +1,6 @@
 #ifndef __KEYBOARDS_H
 #define __KEYBOARDS_H
-extern void keyboard_install();
+//extern void keyboard_install();
 //keyboard US
 unsigned char kbdus[128] =
 {

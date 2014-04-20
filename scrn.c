@@ -78,6 +78,11 @@ void putus(unsigned char *txt) {
 		putch(txt[i]);
 	}
 }
+void printl(char* txt) {
+	puts(txt);
+	putch('\r');
+	putch('\n');
+}
 void settextcolor(unsigned char forecolor, unsigned char back){
 	attrib = (back << 4) | (forecolor & 0x0F);
 }
