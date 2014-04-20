@@ -1,6 +1,7 @@
 #include <system.h>
 #include <test.h>
 #include <fs/vfs.h>
+#include <io/tty.h>
 
 void irq_keyboard(struct regs *r){
 	puts("keyboard interrupted");
@@ -36,6 +37,7 @@ void protected_aftersetup() {
        	puts(i2s(in_prot_mode));
 	putch('\n');
 	test_kp();
+	tty_init();
 	for(;;);
 }
 
