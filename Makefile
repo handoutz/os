@@ -5,10 +5,11 @@
 #gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include -c kernel.c -o kc.o
 #gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include -c scrn.c -o scrn.o
 #ld -m elf_i386 -T link.ld -o kernel kasm.o sys.o kc.o scrn.o
-CC=gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include
+#CC=gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include
+CC=gcc -O -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include
 ASM=nasm -f elf32
 
-SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c memory.c test.c
+SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c test.c memory.c
 OBJECTS=$(SAUCES:.c=.o)
 
 all: build
@@ -30,7 +31,7 @@ build-c: $(SAUCES)
 	$(CC) -c timer.c -o timer.o
 	$(CC) -c keyboard_handler.c -o keyboard_handler.o
 	$(CC) -c strings.c -o strings.o
-	$(CC) -c memory.c -o memory.o
+	#$(CC) -c memory.c -o memory.o
 
 link: $(OBJECTS)
 	#ld -m elf_i386 -T link.ld -o kernel kasm.o sys.o gdt.o kc.o scrn.o

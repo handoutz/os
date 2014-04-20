@@ -15,16 +15,22 @@ idt_load:
 	ret
 
 global gdt_flush
+extern protect_main
 extern gp
 gdt_flush:
+	cli
 	lgdt [gp]   ;loads gdt with [gp]
+	mov eax, cr0
+	or eax, 1
+	mov cr0, eax
 	mov ax, 0x10 ; 0x10 is the offset in GDT to our segment
 	mov ds, ax
 	mov es, ax
 	mov fs, ax
 	mov gs, ax
 	mov ss, ax
-	jmp 0x08:flush2
+	sti
+	jmp 0x08:protect_main
 flush2:
 	ret
 start:

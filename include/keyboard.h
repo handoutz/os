@@ -2,6 +2,7 @@
 #define __KEYBOARDS_H
 //extern void keyboard_install();
 //keyboard US
+//extern void key_press(char c);
 unsigned char kbdus[128] =
 {
 		0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */

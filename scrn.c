@@ -78,6 +78,9 @@ void putus(unsigned char *txt) {
 		putch(txt[i]);
 	}
 }
+void printf(char *txt, ...) {
+	
+}
 void printl(char* txt) {
 	puts(txt);
 	putch('\r');
