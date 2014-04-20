@@ -6,6 +6,7 @@
 #include <timer.h>
 #include <types.h>
 #include <memory.h>
+#include <strings.h>
 
 extern void keyboard_install();
 
