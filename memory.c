@@ -32,7 +32,7 @@ void* mem_start = (void*)MEMORY_START_LOC;
 void *malloc(size_t size) {
 	char *loc;
 	loc = mem_start;
-	mem_start += size;
+	mem_start += size+1;
 	return (void*)loc;
 }
 void *realloc(void* ptr, size_t size) {

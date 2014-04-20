@@ -104,6 +104,13 @@ void fault_handler(struct regs *r) {
 	if(r->int_no < 32) {
 		puts(exceptions[r->int_no]);
 		puts("\r\nSystem halt.\r\n");
+		printl(i2s(r->err_code));
+		puts("eip:");
+		printl(i2s(r->eip));
+		puts("cs:");
+		printl(i2s(r->cs));
+		puts("esp:");
+		printl(i2s(r->esp));
 		for(;;);
 	}
 }

@@ -2,11 +2,13 @@
 #include <types.h>
 typedef struct linked_list_node {
 	void *val;
-	linked_list_node *next;
+	struct linked_list_node *next;
 } linked_list_node;
 
 typedef struct linked_list {
-	linked_list_node *nodes;
+	struct linked_list_node *root;
+	struct linked_list_node *last;
+	int size;
 } linked_list;
 
 extern linked_list* ll_create();

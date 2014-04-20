@@ -32,12 +32,10 @@ void protected_aftersetup() {
 	initvfs();
 	init_tests();
 	keyboard_install();
-	printf("holy shit!!!");
-	//printl(sprintf("in protected mode: %d", in_prot_mode);
 	puts("in protected mode: ");
        	puts(i2s(in_prot_mode));
 	putch('\n');
-
+	test_kp();
 	for(;;);
 }
 

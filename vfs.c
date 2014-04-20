@@ -12,7 +12,7 @@ void initvfs(){
 	puts("\n");
 }
 vfs_node* vfs_map(char* path){
-
+	
 }
 vfs_node* vfs_create(char* path){
 
