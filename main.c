@@ -29,6 +29,8 @@ void protected_aftersetup() {
 	init_video();
 	init_tests();
 	keyboard_install();
+	printf("holy shit!!!");
+	//printl(sprintf("in protected mode: %d", in_prot_mode);
 	puts("in protected mode: ");
        	puts(i2s(in_prot_mode));
 	putch('\n');

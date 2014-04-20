@@ -27,7 +27,8 @@ static size_t page_count = 16;
 static unsigned long long allocated = 0;
 static unsigned long long inuse = 0;
 
-void *mem_start = (void*)0x00100000;
+//void *mem_start = (void*)0x00100000;
+void* mem_start = (void*)MEMORY_START_LOC;
 void *malloc(size_t size) {
 	char *loc;
 	loc = mem_start;

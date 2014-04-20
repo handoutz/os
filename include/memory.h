@@ -3,6 +3,8 @@
 #include <system.h>
 #include <types.h>
 
+#define MEMORY_START_LOC 0x00100000;
+
 typedef struct boundary_tag {
 	unsigned int magic;
 	unsigned int size;
