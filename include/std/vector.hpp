@@ -4,17 +4,30 @@
 #include <arraylist.h>
 
 namespace std {
+
     template<typename _TType>
-    class vector {
+    class arraylist {
     private:
         _llnode *m_node;
     public:
-        vector();
+        arraylist() {
+            m_node = _llcreate();
+        }
 
-        ~vector();
+        ~arraylist() {
+            _lldestroy(m_node);
+        }
 
-        void push_back(_TType val);
+        size_t len() {
+            return m_node->dist_to_end + 1;
+        }
 
-        _TType *at(size_t i);
+        void push_back(_TType val) {
+            _lladd(m_node, val);
+        }
+
+        _TType at(size_t i) {
+            return (_TType) _llget(m_node, i);
+        }
     };
 }

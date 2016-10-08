@@ -47,7 +47,7 @@ void _lladd(_llnode *node, void *val) {
     node->dist_to_end = ii;
     cur->next = _llcreate_val(val);
     cur->next->data = val;
-    TRACE("_lladd | ii=%i, curval=%s, nextval=%s, setval=%s, distToEnd=%i", ii, cur->data, cur->next->data, val,node->dist_to_end);
+    //TRACE("_lladd | ii=%i, curval=%s, nextval=%s, setval=%s, distToEnd=%i", ii, cur->data, cur->next->data, val,node->dist_to_end);
     //TRACE("inserted [%s] at %i", (char *) val, ii);
 }
 

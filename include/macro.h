@@ -12,5 +12,8 @@ inline PAIR *create_pair(void *a, void *b) {
     p->second = b;
     return p;
 }
+#ifdef __cplusplus
 
+#define MALLOCATECLASS(classname) new ((classname*)malloc(sizeof(classname))) classname();
+#endif
 #endif

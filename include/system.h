@@ -1,5 +1,9 @@
+#pragma once
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include <macro.h>
 #include <tables.h>
@@ -39,9 +43,9 @@ extern void outportb(unsigned short _port, unsigned char _data);
 extern void cls();
 extern void putch(unsigned char c);
 extern void putus(unsigned char *str);
-extern void puts(char* str);
-extern void printl(char* str);
-extern void printf(char* str, ...);
+extern void puts(char *str);
+extern void printl(char *str);
+extern void printf(char *str, ...);
 extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
 extern void setcursorloc(int x, int y);
 extern void setcursorloc_pt(POINT p);
@@ -51,4 +55,15 @@ extern void init_video();
 extern void key_down(char k);
 //void (*handler)(struct regs *rr);
 extern void hook_keyboard(void (*handler)(char c));
+#ifdef __cplusplus
+};
+/*void *operator new(size_t s) {
+    void *ss = malloc(s);
+    return ss;
+}
+void operator delete(void *p) {
+    free(p);
+}*/
+#endif
+
 #endif

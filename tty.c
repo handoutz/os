@@ -3,6 +3,7 @@
 #include <io/tty.h>
 #include <fs/vfs.h>
 #include <syslog.h>
+#include "cppos/services.h"
 #include <arraylist.h>
 
 #define TTY_INPUT_MAXLEN 512
@@ -21,6 +22,7 @@ void tty_timer_tick(int tick) {
 void tty_init() {
     hook_keyboard(tty_key_down);
     register_to_timer(&tty_timer_tick);
+    initialize_svcs();
     tty_show_prompt();
 }
 
