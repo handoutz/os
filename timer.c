@@ -27,7 +27,12 @@ unsigned char lastKey = '\0';
 void timer_handle(struct regs *r) {
     time_ticks++;
     if (time_ticks % 18 == 0) {
-        //puts("one second!\n");
+        if (root_node != NULL) {
+            for (int iter = 0; iter <= _llsize(root_node); iter++) {
+                TIMERCB cb = (TIMERCB) _llget(root_node, iter);
+                cb(time_ticks);
+            }
+        }
     }
     char kbStat = inportb(0x64);
     if (kbStat & 0x01) {
@@ -40,7 +45,10 @@ void timer_install() {
     irq_install_handler(0, &timer_handle);
 }
 
-void register_to_timer(void (*funk)(int)) {
-    //POINT loc = getcursorloc();
-
+void register_to_timer(TIMERCB cb) {
+    if (root_node == NULL) {
+        root_node = _llcreate_val(cb);
+    } else {
+        _lladd(root_node, cb);
+    }
 }

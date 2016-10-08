@@ -8,6 +8,8 @@
 #include <memory.h>
 #include <strings.h>
 
+#define SCREEN_WIDTH 80
+#define SCREEN_HEIGHT 25
 #define COLOR_BLACK 0
 #define COLOR_BLUE 1
 #define COLOR_GREEN 2
@@ -42,6 +44,7 @@ extern void printl(char* str);
 extern void printf(char* str, ...);
 extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
 extern void setcursorloc(int x, int y);
+extern void setcursorloc_pt(POINT p);
 extern POINT getcursorloc();
 extern void init_video();
 

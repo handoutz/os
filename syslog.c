@@ -19,34 +19,8 @@ void log_output(int line, const char *file, const char *level, const char *fmt, 
     puts(" - ");
     va_list lst;
     va_start(lst, fmt);
-    BOOL expecting_fmt = FALSE;
-    while (*fmt != '\0') {
-        if (*fmt == '%') {
-            expecting_fmt = TRUE;
-        } else if (expecting_fmt == TRUE) {
-            expecting_fmt = FALSE;
-            switch (*fmt) {
-                case 's': {
-                    char *s = va_arg(lst, char*);
-                    puts(s);
-                    break;
-                }
-                case 'i': {
-                    int i = va_arg(lst, int);
-                    puts(itoa(i, 10));
-                    break;
-                }
-                case 'c': {
-                    int i = va_arg(lst, int);
-                    putch((unsigned char) i);
-                    break;
-                }
-            }
-        } else {
-            putch(*fmt);
-        }
-        ++fmt;
-    }
-    va_end(lst);
+    STRING restr = vsprintf((char *) fmt, lst);
+    puts(restr);
     printl("");
+    va_end(lst);
 }

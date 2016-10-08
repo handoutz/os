@@ -9,6 +9,10 @@ void setcursorloc(int x, int y) {
     csr_y = y;
 }
 
+void setcursorloc_pt(POINT pt) {
+    setcursorloc(pt.x, pt.y);
+}
+
 POINT getcursorloc() {
     POINT l;
     l.x = csr_x;

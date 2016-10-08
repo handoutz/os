@@ -1,4 +1,5 @@
 #include <system.h>
+#include <fs/fs.hpp>
 #include <io/tty.h>
 #include <fs/vfs.h>
 #include <syslog.h>
@@ -9,8 +10,17 @@
 char cur_input[TTY_INPUT_MAXLEN];
 int cur_input_n = 0;
 
+void tty_timer_tick(int tick) {
+    POINT savedLoc = getcursorloc();
+    STRING str = sprintf("%is since boot", seconds_from_boot());
+    setcursorloc(SCREEN_WIDTH - strlen(str), SCREEN_HEIGHT - 1);
+    puts(str);
+    setcursorloc_pt(savedLoc);
+}
+
 void tty_init() {
     hook_keyboard(tty_key_down);
+    register_to_timer(&tty_timer_tick);
     tty_show_prompt();
 }
 
@@ -58,14 +68,17 @@ void tty_on_enter() {
     if (foundCmd == 0) {
         cmd[cmdLen] = '\0';
     }
-    _llnode *node = _llcreate_val("asdf");
+    TRACE("path=%s", combinePath("lol", "brah"));
+    //TRACE("sprintr=%s", sprintf("secs from boot=%i", seconds_from_boot()));
+    //TRACE("yeah!!%s", " cool");
+    /*_llnode *node = _llcreate_val("asdf");
     _lladd(node, "yes");
     _lladd(node, "no");
     _lladd(node, "no2");
     TRACE("node[0]=%s", (char *) _llget(node, 0));
     TRACE("node[1]=%s", (char *) _llget(node, 1));
     TRACE("node[2]=%s", (char *) _llget(node, 2));
-    TRACE("node[3]=%s", (char *) _llget(node, 3));
+    TRACE("node[3]=%s", (char *) _llget(node, 3));*/
 
     //DEBUG("(%i,%i)", loc.x, loc.y);
     //DEBUG("cmd=[%s], rest=[%s]", cmd, rest);
