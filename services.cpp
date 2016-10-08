@@ -26,6 +26,8 @@ public:
     }
     TestService *Test;
     void init() {
+        Test = new((TestService *) malloc(sizeof(TestService))) TestService();
+        Test->init();
         /*Test = MALLOCATECLASS(TestService);
         Test->init();*/
     }
