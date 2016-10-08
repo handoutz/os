@@ -1,6 +1,8 @@
 #include <system.h>
 #include <memory.h>
 #include <types.h>
+#include "include/memory.h"
+
 typedef struct alloc_major {
         struct lloc_major *prev;
         struct alloc_major *next;
@@ -43,7 +45,7 @@ void *calloc(size_t num, size_t size) {
 	//todo: this
 	return 0;
 }
-void free(void* ptr) {
+int free(void* ptr) {
 	//todo: this
 	return 0;
 }

@@ -6,6 +6,9 @@ section .text
 	dd 0x00			;flags
 	dd - (0x1BADB002 + 0x00);checksum
 global start
+global gettime
+gettime:
+    ret
 extern kmain
 
 global idt_load
@@ -48,6 +51,8 @@ start:
 	cli
 	call kmain
 	hlt
+
+
 
 global irq0
 global irq1

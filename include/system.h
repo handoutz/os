@@ -8,6 +8,19 @@
 #include <memory.h>
 #include <strings.h>
 
+#define COLOR_BLACK 0
+#define COLOR_BLUE 1
+#define COLOR_GREEN 2
+#define COLOR_CYAN 3
+#define COLOR_RED 4
+#define COLOR_MAGENTA 5
+#define COLOR_BROWN 6
+#define COLOR_LGRAY 7
+#define COLOR_DGRAY 8
+#define COLOR_LBLUE 9
+#define COLOR_LGREEN 10
+#define COLOR_WHITE 15
+
 extern void keyboard_install();
 
 //extern unsigned char *memcpy(unsigned char *dest, const unsigned char *src, int count);
@@ -28,6 +41,8 @@ extern void puts(char* str);
 extern void printl(char* str);
 extern void printf(char* str, ...);
 extern void settextcolor(unsigned char forecolor, unsigned char backcolor);
+extern void setcursorloc(int x, int y);
+extern POINT getcursorloc();
 extern void init_video();
 
 extern void key_down(char k);

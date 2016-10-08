@@ -9,7 +9,7 @@
 CC=gcc -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g
 ASM=nasm -f elf32
 
-SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c test.c memory.c vfs.c linkedlist.c tty.c
+SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c test.c memory.c vfs.c linkedlist.c tty.c syslog.c arraylist.c
 OBJECTS=$(SAUCES:.c=.o)
 
 all: build
@@ -21,9 +21,11 @@ build-asm: kernel.asm
 
 #build-c: system.c kernel.c scrn.c gdt.c idt.c
 build-c: $(SAUCES)
+	$(CC) -c arraylist.c -o arraylist.o
 	$(CC) -c sys.c -o sys.o
 	$(CC) -c gdt.c -o gdt.o
 	$(CC) -c main.c -o main.o
+	$(CC) -c syslog.c -o syslog.o
 	$(CC) -c scrn.c -o scrn.o
 	$(CC) -c idt.c -o idt.o
 	$(CC) -c isrs.c -o isrs.o
