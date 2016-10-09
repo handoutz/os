@@ -11,11 +11,11 @@ namespace std {
         _llnode *m_node;
     public:
         arraylist() {
-            m_node = _llcreate();
+            //m_node = _llcreate();
         }
 
         ~arraylist() {
-            _lldestroy(m_node);
+            //_lldestroy(m_node);
         }
 
         size_t len() {

@@ -2,6 +2,7 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 #ifdef __cplusplus
+#include <std/cxxabiv1.h>
 extern "C" {
 #endif
 
@@ -57,6 +58,26 @@ extern void key_down(char k);
 extern void hook_keyboard(void (*handler)(char c));
 #ifdef __cplusplus
 };
+
+inline void *operator new(size_t size) throw() {
+    void *ptr = malloc(size);
+    return ptr;
+}
+inline void *operator new(size_t size, void *p) throw() {
+    if(p==NULL){
+        p = malloc(size);
+    }
+    return p;
+}
+inline void *operator new[](size_t size, void *p) throw() {
+    if(p==NULL){
+        p = malloc(size);
+    }
+    return p;
+}
+
+inline void operator delete(void *ptr) {}
+inline void operator delete[](void *ptr) {}
 /*void *operator new(size_t s) {
     void *ss = malloc(s);
     return ss;

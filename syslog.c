@@ -32,7 +32,7 @@ void log_prefix_out(CSTRING src, CSTRING level) {
 }
 
 void log_output(int line, const char *file, const char *level, const char *fmt, ...) {
-    log_prefix_out((const unsigned char *) "logging", (const unsigned char *) level);
+    log_prefix_out("logging", (const unsigned char *) level);
     puts((char *) file);
     putch(':');
     puts(i2s(line));
@@ -45,7 +45,7 @@ void log_output(int line, const char *file, const char *level, const char *fmt, 
     va_end(lst);
 }
 void log_service(CSTRING svc, CSTRING fmt, ...) {
-    log_prefix_out((const unsigned char *) "SVCMGR", svc);
+    log_prefix_out("SVCMGR", svc);
     puts(" - ");
     va_list lst;
     va_start(lst, fmt);

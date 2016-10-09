@@ -2,32 +2,25 @@
 #include <system.h>
 #include <std/vector.hpp>
 #include <syslog.h>
+#include <cpp/service.hpp>
+#include <cpp/fileservice.hpp>
 #include "cppos/services.h"
-
-#define dolog(name, fmt, ...) log_service(name->raw(), fmt, __VA_ARGS__)
-
-class TestService {
-public:
-    std::str *m_name;
-    STRING name() const { return m_name->raw(); }
-    TestService() {
-        m_name = new std::str("tester");
-    }
-    ~TestService() {}
-    void init() {
-        dolog(m_name, "lol my name is %s", m_name->raw());
-    }
-};
 
 class ServiceMgr {
 public:
+    _llnode *m_svcs;
     ServiceMgr() {
         TRACE("svcmgr initialized", "");
     }
-    TestService *Test;
     void init() {
-        Test = new((TestService *) malloc(sizeof(TestService))) TestService();
-        Test->init();
+        //
+        // m_svcs = _llcreate();
+        /*FileService *fs = new((FileService *) malloc(sizeof(FileService))) FileService();
+        _lladd(m_svcs, fs);
+        fs->init();*/
+        //m_svcs.push_back(new FileService());
+        //Test = new((TestService *) malloc(sizeof(TestService))) TestService();
+        //Test->init();
         /*Test = MALLOCATECLASS(TestService);
         Test->init();*/
     }
@@ -38,6 +31,9 @@ static ServiceMgr *mgr;
 extern void initialize_svcs() {
     ServiceMgr *mem = (ServiceMgr *) malloc(sizeof(ServiceMgr));
     mgr = new(mem) ServiceMgr();
-    // mgr = (ServiceMgr *) mem;
     mgr->init();
+
+    //mgr = MALLOCATECLASS(ServiceMgr);
+    // mgr = (ServiceMgr *) mem;
+    //mgr->init();
 }
