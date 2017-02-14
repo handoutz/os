@@ -6,10 +6,10 @@
 #gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include -c scrn.c -o scrn.o
 #ld -m elf_i386 -T link.ld -o kernel kasm.o sys.o kc.o scrn.o
 #CC=gcc -O -fstrength-reduce -fomit-frame-pointer -finline-functions -fno-builtin -Wall -nostdinc -m32 -I./include
-CC=gcc -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g
-CPP=g++ -O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
+CC=i386-elf-gcc -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g
+CPP=i386-elf-g++ -O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
 #CPP+= -fno-rtti -fno-exceptions
-ASM=nasm -f elf32
+ASM=nasm -f elf
 
 SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c test.c memory.c vfs.c linkedlist.c tty.c syslog.c arraylist.c
 CPPS=new.cpp fs.cpp std/vector.cpp services.cpp
@@ -45,7 +45,7 @@ build-cpp: $(CPPS)
 	$(CPP) -c services.cpp -o services.o
 link: $(OBJECTS)
 	#ld -m elf_i386 -T link.ld -o kernel kasm.o sys.o gdt.o kc.o scrn.o
-	ld -m elf_i386 -T link.ld -o kernel kasm.o $(OBJECTS)
+	i386-elf-ld -m elf_i386 -T link.ld -o kernel kasm.o $(OBJECTS)
 
 postbuild:
 	rm -rf *.o

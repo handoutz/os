@@ -22,8 +22,7 @@ void kmain(void) {
     //irq_install_handler(1, &irq_keyboard);
     timer_install();
     keyboard_install();
-    __asm__ __volatile__("mov eax, 0x0"
-            "");
+    //__asm__ __volatile__("mov eax, 0x0");
     protected_aftersetup();
 
     for (;;);
@@ -36,7 +35,7 @@ void protected_aftersetup() {
     puts("in protected mode: ");
     puts(i2s(in_prot_mode));
     putch('\n');
-    test_kp();
+    //test_kp();
     tty_init();
     for (;;);
 }
