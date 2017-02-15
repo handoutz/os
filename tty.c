@@ -70,7 +70,7 @@ void tty_on_enter() {
     if (foundCmd == 0) {
         cmd[cmdLen] = '\0';
     }
-    TRACE("path=%s", combinePath("lol", "brah"));
+    //TRACE("path=%s", combinePath("lol", "brah"));
     //TRACE("sprintr=%s", sprintf("secs from boot=%i", seconds_from_boot()));
     //TRACE("yeah!!%s", " cool");
     /*_llnode *node = _llcreate_val("asdf");

@@ -4,7 +4,7 @@ export PATH="/home/vmatonis/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/home/vma
 ##qemu-system-i386 -kernel kernel #-usbdevice keyboard
 if [[ $* == *-t* ]]
 then
-    qemu-system-i386 -kernel kernel -nographic -serial stdio -append "root=/dev/ram0 console=tty0"
+    qemu-system-i386 -kernel kernel.run -nographic -serial stdio -append "root=/dev/ram0 console=tty0"
 else
-    qemu-system-i386 -kernel kernel
+    qemu-system-i386 -kernel kernel.run
 fi
