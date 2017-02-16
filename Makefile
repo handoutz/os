@@ -7,12 +7,12 @@ ASM=nasm -f elf
 
 SAUCES=sys.c main.c scrn.c gdt.c idt.c isrs.c irq.c timer.c keyboard_handler.c strings.c test.c memory.c vfs.c linkedlist.c tty.c syslog.c arraylist.c mfs.c
 CPPS=std/vector.cpp services.cpp
-OBJECTS=kernel.asm.o spammy.asm.o
+OBJECTS=loader.asm.o kernel.asm.o spammy.asm.o
 OBJECTS+=$(SAUCES:.c=.o)
 OBJECTS+=$(CPPS:.cpp=.o)
 
 
-all: kernel.run
+all: kernel.run boot.iso
 
 .c.o:
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -23,6 +23,9 @@ kernel.asm.o:
 spammy.asm.o:
 	$(ASM) -o $@ spammy.asm
 
+loader.asm.o:
+	$(ASM) -o $@ loader.asm
+
 build-cpp: $(CPPS)
 	$(CXX) -c new.cpp -o new.o
 	$(CXX) -c std/vector.cpp -o std/vector.o
@@ -31,9 +34,19 @@ build-cpp: $(CPPS)
 print-%  : ; @echo $* = $($*)
 
 kernel.run: $(OBJECTS)
-	i386-elf-ld -m elf_i386 -T link.ld -o kernel.run $(OBJECTS)
+	i386-elf-ld -m elf_i386 -T newlinker.ld -o kernel.run $(OBJECTS)
+
+boot.iso: kernel.run
+	rm iso/boot/kernel.run
+	cp kernel.run ./iso/boot/kernel.run
+	grub-mkrescue -o boot.iso iso
 
 postbuild:
 	rm -rf *.o
+
 clean:
 	rm -f $(OBJECTS)
+	rm -f boot.iso
+
+run: clean all
+	qemu-system-i386 -cdrom boot.iso
