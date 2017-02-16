@@ -1,17 +1,24 @@
 #ifndef __MFS_H
 #define __MFS_H
+#include <system.h>
 
-typedef struct inode
+#define MFS_UNUSED 0
+#define MFS_DIRECTORY 1
+#define MFS_FILE 2
+
+
+typedef struct mfs_block
 {
-    uint32_t ino;
+    uint64_t id;
     uint32_t size;
-    uint32_t mode;
-    uint32_t mtime;
-    uint32_t dtime;
-    uint32_t blocks;
-    uint32_t flags;
-    UCHAR* block;
-} _inode;
+    BYTE* data;
+} _mfs_block;
+
+typedef struct mfs_index_entry
+{
+    BYTE flags;
+    _mfs_block* block;
+} _mfs_index_entry;
 
 extern void mfs_init();
 
