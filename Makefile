@@ -1,6 +1,6 @@
 CC=i386-elf-gcc
 CXX=i386-elf-g++
-CFLAGS=-O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g
+CFLAGS=-O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g -Wno-unused-variable
 CXXFLAGS=-O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
 #CPP+= -fno-rtti -fno-exceptions
 ASM=nasm -f elf
@@ -50,3 +50,6 @@ clean:
 
 run: clean all
 	qemu-system-i386 -cdrom boot.iso
+
+debug: clean all
+	qemu-system-i386 -s -S -cdrom boot.iso

@@ -29,7 +29,7 @@ void kmain(void) {
 }
 void protected_aftersetup() {
     init_video();
-    initvfs();
+    //initvfs();
     init_tests();
     keyboard_install();
     puts("in protected mode: ");

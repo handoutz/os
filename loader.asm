@@ -10,6 +10,13 @@ CHECKSUM    equ -(MAGIC + FLAGS)  ; checksum required
 KERNEL_VIRTUAL_BASE equ 0xC0000000                  ; 3GB
 KERNEL_PAGE_NUMBER equ (KERNEL_VIRTUAL_BASE >> 22)  ; Page directory index of kernel's 4MB PTE.
 
+section .multiboot
+align 4
+MultiBootHeader:
+    dd MAGIC
+    dd FLAGS
+    dd CHECKSUM
+    
 section .data
 align 0x1000
 BootPageDirectory:
@@ -26,20 +33,15 @@ BootPageDirectory:
     dd 0x00000083
     times (1024 - KERNEL_PAGE_NUMBER - 1) dd 0  ; Pages after the kernel image.
  
- 
 section .text
 align 4
-MultiBootHeader:
-    dd MAGIC
-    dd FLAGS
-    dd CHECKSUM
  
 ; reserve initial kernel stack space -- that's 16k.
 STACKSIZE equ 0x4000
  
 ; setting up entry point for linker
-loader equ (_loader - 0xC0000000)
-global loader
+;loader equ (_loader - 0xC0000000)
+;global loader
  
 _loader:
     ; NOTE: Until paging is set up, the code must be position-independent and use physical
@@ -50,7 +52,7 @@ _loader:
     mov ecx, cr4
     or ecx, 0x00000010                          ; Set PSE bit in CR4 to enable 4MB pages.
     mov cr4, ecx
- 
+
     mov ecx, cr0
     or ecx, 0x80000000                          ; Set PG bit in CR0 to enable paging.
     mov cr0, ecx

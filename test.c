@@ -12,7 +12,7 @@ void init_tests() {
 	printl(i2s(neqs));
 	
 	int i;
-	linked_list *lst = ll_create((void*)&("lol"));
+	/*linked_list *lst = ll_create((void*)&("lol"));
 	ll_add(lst, (void*)&("asdf"));
 	printl((char*)ll_get(lst, 0));
 	printl((char*)ll_get(lst, 1));
@@ -20,7 +20,7 @@ void init_tests() {
 	
 	for(i=0;i<lst->size;i++) {
 		printl((char*)ll_get(lst, i));
-	}
+	}*/
 //	putch(i2s(strcmp("a","a"))[0]);
 }
 void test_kp() {
