@@ -22,7 +22,7 @@ void tty_timer_tick(int tick) {
 void tty_init() {
     hook_keyboard(tty_key_down);
     register_to_timer(&tty_timer_tick);
-    initialize_svcs();
+    //initialize_svcs();
     tty_show_prompt();
 }
 

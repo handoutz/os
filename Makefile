@@ -1,7 +1,7 @@
-CC=i386-elf-gcc
-CXX=i386-elf-g++
-CFLAGS=-O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g -Wno-unused-variable
-CXXFLAGS=-O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
+CC=gcc
+CXX=g++
+CFLAGS=-m32 -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g -Wno-unused-variable
+CXXFLAGS=-m32 -O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
 #CPP+= -fno-rtti -fno-exceptions
 ASM=nasm -f elf
 
@@ -34,7 +34,7 @@ build-cpp: $(CPPS)
 print-%  : ; @echo $* = $($*)
 
 kernel.run: $(OBJECTS)
-	i386-elf-ld -m elf_i386 -T newlinker.ld -o kernel.run $(OBJECTS)
+	ld -m elf_i386 -T newlinker.ld -o kernel.run $(OBJECTS)
 
 boot.iso: kernel.run
 	rm iso/boot/kernel.run

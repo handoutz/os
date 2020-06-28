@@ -25,6 +25,7 @@ int seconds_from_boot() {
 unsigned char lastKey = '\0';
 
 void timer_handle(struct regs *r) {
+    //printf("tick\n");
     time_ticks++;
     if (time_ticks % 18 == 0) {
         if (root_node != NULL) {
