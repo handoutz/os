@@ -68,8 +68,9 @@ inline void addlst(_llnode **n, char *val) {
 
 unsigned char *sprintf(char *fmt, ...) {
     va_list lst;
+    STRING res;
     va_start(lst, fmt);
-    STRING res = vsprintf(fmt, lst);
+    res = vsprintf(fmt, lst);
     va_end(lst);
     return res;
 }

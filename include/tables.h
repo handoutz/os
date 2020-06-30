@@ -2,6 +2,7 @@
 #define __TABLES_H
 
 struct regs {
+        //unsigned int cr2;
 	unsigned int gs, 
                 fs, 
                 es, 

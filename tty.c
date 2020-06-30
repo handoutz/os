@@ -13,16 +13,25 @@ int cur_input_n = 0;
 
 void tty_timer_tick(int tick) {
     POINT savedLoc = getcursorloc();
+    int seconds = tick/18;
+    STRING str = "since boot";
+    setcursorloc(SCREEN_WIDTH - (strlen(str)+6), SCREEN_HEIGHT - 1);
+    puts(i2s(seconds));
+    puts("s ");
+    puts(str);
+    setcursorloc_pt(savedLoc);
+    /*POINT savedLoc = getcursorloc();
     STRING str = sprintf("%is since boot", seconds_from_boot());
     setcursorloc(SCREEN_WIDTH - strlen(str), SCREEN_HEIGHT - 1);
     puts(str);
-    setcursorloc_pt(savedLoc);
+    setcursorloc_pt(savedLoc);*/
+    //printl("hello");
 }
 
 void tty_init() {
     hook_keyboard(tty_key_down);
     register_to_timer(&tty_timer_tick);
-    //initialize_svcs();
+    initialize_svcs();
     tty_show_prompt();
 }
 

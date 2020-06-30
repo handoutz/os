@@ -2,7 +2,7 @@
 #include <test.h>
 #include <fs/vfs.h>
 #include <io/tty.h>
-
+#include <memory.h>
 void irq_keyboard(struct regs *r) {
     puts("keyboard interrupted");
 }
@@ -22,6 +22,7 @@ void kmain(void) {
     //irq_install_handler(1, &irq_keyboard);
     timer_install();
     keyboard_install();
+
     //__asm__ __volatile__("mov eax, 0x0");
     protected_aftersetup();
 
@@ -31,6 +32,7 @@ void protected_aftersetup() {
     init_video();
     //initvfs();
     init_tests();
+    mem_init();
     keyboard_install();
     puts("in protected mode: ");
     puts(i2s(in_prot_mode));

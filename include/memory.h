@@ -11,7 +11,7 @@ extern unsigned char *memcpy(unsigned char*, const unsigned char*, size_t);
 extern unsigned short *memcpyw(unsigned short *dest, const unsigned short *s, size_t count);
 extern unsigned char *memset(unsigned char*, unsigned char, size_t);
 extern unsigned short *memsetw(unsigned short*, unsigned short, size_t);
-
+void mem_init(void);
 /*extern void *sbrk(size_t size);
 extern void *malloc(size_t);
 extern void *realloc(void*, size_t);

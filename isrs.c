@@ -100,8 +100,26 @@ char *exceptions[] = {
 	"Reserved Exception",
 	"Reserved Exception"
 };
+int is_bit_set(int subject, int nBit){
+	return ((subject>> nBit)&0x01);
+}
 void fault_handler(struct regs *r) {
+	//register unsigned cr2 asm ("cr2");
 	if(r->int_no < 32) {
+		if(r->int_no==14)
+		{
+			//hey its a page fault
+			puts("P=");
+			printl(i2s(is_bit_set(r->err_code, 0)));
+			puts("RW=");
+			printl(i2s(is_bit_set(r->err_code, 1)));
+			puts("US=");
+			printl(i2s(is_bit_set(r->err_code, 2)));
+			
+			puts("cr2=");
+			//printl(i2s(r->cr2));
+
+		}
 		puts(exceptions[r->int_no]);
 		puts("\r\nSystem halt.\r\n");
 		

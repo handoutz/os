@@ -1,7 +1,10 @@
 #include <system.h>
 #include <memory.h>
 #include <types.h>
-#include <liballoc.h>
+//#include <liballoc.h>
+
+uint32_t page_directory[1024] __attribute__((aligned(4096)));
+uint32_t first_page_table[1024] __attribute__((aligned(4096)));
 
 static size_t page_size = 4096;
 static size_t page_count = 16;
@@ -23,10 +26,27 @@ void *calloc(size_t num, size_t size) {
 }
 int free(void* ptr) {
 	//todo: this
+
 	return 0;
 }
-
-
+void mem_init(void){
+// And this inside a function
+    unsigned int i;
+    for(i=0;i<1024;i++){
+           // This sets the following flags to the pages:
+        //   Supervisor: Only kernel-mode can access them
+        //   Write Enabled: It can be both read from and written to
+        //   Not Present: The page table is not present
+        page_directory[i] = 0x00000002;
+    }
+    for(i=0;i<1024;i++){
+            // As the address is page aligned, it will always leave 12 bits zeroed.
+        // Those bits are used by the attributes ;)
+        first_page_table[i] = (i * 0x1000) | 3; // attributes: supervisor level, read/write, present.
+    }
+    page_directory[0] = ((unsigned int)first_page_table) | 3;
+    //loadPageDirectory(page_directory);
+}
 unsigned short *memcpyw(unsigned short *dest, const unsigned short *s, size_t count)
 {
     short *dst = (short *)dest;

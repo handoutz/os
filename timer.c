@@ -25,12 +25,13 @@ int seconds_from_boot() {
 unsigned char lastKey = '\0';
 
 void timer_handle(struct regs *r) {
-    //printf("tick\n");
+    //printl("tick\n");
     time_ticks++;
     if (time_ticks % 18 == 0) {
         if (root_node != NULL) {
             for (int iter = 0; iter <= _llsize(root_node); iter++) {
                 TIMERCB cb = (TIMERCB) _llget(root_node, iter);
+
                 cb(time_ticks);
             }
         }
