@@ -7,10 +7,8 @@
 #include <arraylist.h>
 
 #define TTY_INPUT_MAXLEN 512
-
 char cur_input[TTY_INPUT_MAXLEN];
 int cur_input_n = 0;
-
 void tty_timer_tick(int tick) {
     POINT savedLoc = getcursorloc();
     int seconds = tick/18;
@@ -31,7 +29,7 @@ void tty_timer_tick(int tick) {
 void tty_init() {
     hook_keyboard(tty_key_down);
     register_to_timer(&tty_timer_tick);
-    initialize_svcs();
+    //initialize_svcs(); oct 15 2022 - failing here
     tty_show_prompt();
 }
 

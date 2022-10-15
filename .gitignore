@@ -1,2 +1,4 @@
 toolchain/*
 tools/tmp/*
+*.o
+boot.iso

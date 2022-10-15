@@ -1,6 +1,6 @@
 CC=gcc
 CXX=g++
-CFLAGS=-m32 -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g -Wno-unused-variable
+CFLAGS=-m32 -O1 -ffreestanding -fstrength-reduce -fomit-frame-pointer -finline-functions -std=gnu99 -nostdinc -Wall -m32 -I./include -g -Wno-unused-variable -fno-stack-protector
 CXXFLAGS=-m32 -O1 -fno-builtin -ffreestanding -fstrength-reduce -fpermissive -fomit-frame-pointer -finline-functions -std=c++11 -nostdinc -Wall -m32 -I./include -g
 #CPP+= -fno-rtti -fno-exceptions
 ASM=nasm -f elf
