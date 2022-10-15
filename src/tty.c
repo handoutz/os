@@ -3,7 +3,7 @@
 #include <io/tty.h>
 #include <fs/vfs.h>
 #include <syslog.h>
-#include "cppos/services.h"
+#include "../cppos/services.h"
 #include <arraylist.h>
 
 #define TTY_INPUT_MAXLEN 512
